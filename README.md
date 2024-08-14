@@ -52,20 +52,21 @@ Here's what you need to do on your pi to get it ready to take a signed .img file
 1. Make a private key (keep this safe):
    ```openssl genrsa -out private.pem 2048```
 
+2. Make a boot.conf file with ```rpi-eeprom-config -edit``` and add HTTP_HOST and HTTP_PREFIX to your liking.  You can use the RPI serial number as the PREFIX so you can have multiple directories for each of your pi, this is like the TFTP setup. You can find [boot.conf docs here](https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/eeprom-bootloader.adoc)
 
-2. Sign your eeprom:
+3. Sign your eeprom:
    ```
       rpi-eeprom-config -c boot.conf -p private.pem -o pieeprom.upd pieeprom.original.bin
       rpi-eeprom-digest -i pieeprom.upd -o pieeprom.sig
    ```
 
 
-3. Flash it, and reboot so it takes.
+4. Flash it, and reboot so it takes.
 ```rpi-eeprom-update -f ./pieeprom.upd```
 
-4. Sign your new boot.img you have created with buildroot: ```rpi-eeprom-digest -i boot.img -o boot.sig -k private.pem```
+5. Sign your new boot.img you have created with buildroot: ```rpi-eeprom-digest -i boot.img -o boot.sig -k private.pem```
 
-5. Copy .img and .sig to your webserver.  You can use this if you have done something like the buildroot above, and happen to be running a pi.hole (there's a handy little webserver already stood up that you can use to shell to your server and sign the code):
+6. Copy .img and .sig to your webserver.  You can use this if you have done something like the buildroot above, and happen to be running a pi.hole (there's a handy little webserver already stood up that you can use to shell to your server and sign the code):
 
 ```bash
 jcuff@amdmini:~/MiniPiBoot/buildroot-2024.05.1$ cat makeimage.sh 
@@ -79,9 +80,9 @@ sudo ssh pi.hole "/var/www/html/pi/pistuff/rpi-eeprom/rpi-eeprom-digest \
 	-k /var/www/html/pi/pistuff/private.pem"
 ```
 
-6. Boot your pi - Enjoy.
+7. Boot your pi - Enjoy.
 
-7. Spend hours fiddling with buildroot so your initrd is nice and awesome - remember, there's a limit for these img files - 96MB tops, so keep it tight!
+8. Spend hours fiddling with buildroot so your initrd is nice and awesome - remember, there's a limit for these img files - 96MB tops, so keep it tight!
 
 
 Video grab from a HDMI USB connector through QuickTime and then courtesy of old faithful to turn it into a gif.
