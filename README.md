@@ -5,7 +5,7 @@
 I was looking for a way to boot a pi quickly.  tftp is a bit slow, turns out there's now a "Mode 7" to boot a pi with HTTP if you make your own image, this comes from the "hold shift to boot a recovery" deal, turns out you can exploit this to load your own dot img file.  Nice.
 
 
-If you want to use https://buildroot.org you can use this as a starter, have a look at how the raspberry folks do this to make their network boot image over here:  https://github.com/raspberrypi/rpi-imager/ in the end I just used a regular ```make raspberrypi4_64_defconfig``` from ```make list-defconfigs``` in buildroot, then in the style of rpi-imager copied out the stuff I needed and used make-boot-image from https://github.com/raspberrypi/usbboot/tree/master/tools.  
+If you want to use https://buildroot.org you can use this as a starter, have a look at how the raspberry folks do this to make their network boot image over here:  https://github.com/raspberrypi/rpi-imager/ in the end I just used a regular ```make raspberrypi4_64_defconfig``` from ```make list-defconfigs``` in buildroot, then in the style of rpi-imager copied out the stuff I needed and used ```make-boot-image``` from https://github.com/raspberrypi/usbboot/tree/master/tools.  
 
 The stuff you need to copy out is just this shell code below - we configured an initrd so we switch out all the /dev/mmcblk stuffs in cmdline.txt to /dev/ram0.  Took a bit of fiddling did that.
 
