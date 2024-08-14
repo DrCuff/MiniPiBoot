@@ -91,6 +91,27 @@ Video grab from a HDMI USB connector through QuickTime and then courtesy of old 
 ![MiniPiBoot](./output.gif)
 
 
+Update - uploaded the WORKINGPICUFFBUILDROOT.img if you want to give it a whirl, you'll need to sign it with your own private.pem.  Careful, it's a HUGE download nearly 32MB.  If you want to see what's in it you can:
+
+```bash
+jcuff@amdmini:~/MiniPiBoot/buildroot-2024.05.1$ mkdir tt ; sudo mount -o loop WORKINGPICUFFBUILDROOT.img tt
+[sudo] password for jcuff: 
+
+jcuff@amdmini:~/MiniPiBoot/buildroot-2024.05.1$ ls -lrta tt
+total 31694
+drwxr-xr-x  3 root  root      8192 Jan  1  1970 .
+-rwxr-xr-x  1 root  root   2257216 Aug 14 15:30 start4.elf
+-rwxr-xr-x  1 root  root  21277006 Aug 14 15:30 rootfs.cpio.zst
+drwxr-xr-x  2 root  root     26624 Aug 14 15:30 overlays
+-rwxr-xr-x  1 root  root   8811093 Aug 14 15:30 Image.gz
+-rwxr-xr-x  1 root  root      5436 Aug 14 15:30 fixup4.dat
+-rwxr-xr-x  1 root  root       965 Aug 14 15:30 config.txt
+-rwxr-xr-x  1 root  root        60 Aug 14 15:30 cmdline.txt
+-rwxr-xr-x  1 root  root     54707 Aug 14 15:30 bcm2711-rpi-4-b.dtb
+drwxr-xr-x 20 jcuff jcuff     4096 Aug 14 16:29 ..
+
+```
+
 
 
 
