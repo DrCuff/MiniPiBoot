@@ -52,7 +52,9 @@ Here's what you need to do on your pi to get it ready to take a signed .img file
 1. Make a private key (keep this safe):
    ```openssl genrsa -out private.pem 2048```
 
-2. Make a boot.conf file with ```rpi-eeprom-config -edit``` and add HTTP_HOST and HTTP_PREFIX to your liking.  You can use the RPI serial number as the PREFIX so you can have multiple directories for each of your pi, this is like the TFTP setup. You can find [boot.conf docs here](https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/eeprom-bootloader.adoc)
+2. Make a boot.conf file with ```rpi-eeprom-config -edit``` and add HTTP_HOST and HTTP_PREFIX to your liking.  You can use the RPI serial number as the PREFIX so you can have multiple directories for each of your pi, this is like the TFTP setup. You can find [boot.conf docs here](https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/eeprom-bootloader.adoc).  
+
+I set my [https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/eeprom-bootloader.adoc#boot_order-fields](BOOT_ORDER) to 0xf71 so it goes SD card, then HTTP_BOOT if there is no card.
 
 3. Sign your eeprom:
    ```
